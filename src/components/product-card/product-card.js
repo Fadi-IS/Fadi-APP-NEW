@@ -27,7 +27,7 @@ function ProductCard({ product }) {
           {price}
           <span className="product-card__content__price__slash">
             {wasPrice}
-          </span>
+          </span> 
         </div>
         <span className="product-card__content__description">
           {description}

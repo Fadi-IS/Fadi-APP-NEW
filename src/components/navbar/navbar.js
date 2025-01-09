@@ -18,7 +18,7 @@ function Navbar() {
 
   useEffect(() => {
     if (width > 800) {
-      closeMenu();
+      closeMenu(false);
     }
   }, [width]);
   return (
@@ -28,7 +28,7 @@ function Navbar() {
           <Link to="/">
             <div className="navbar__left-side__logo">
               <span className="navbar__left-side__logo__text">
-                Fadi <b>ECOM</b> STORE
+                <b>F</b>ADI <b>E-COM</b> STORE
               </span>
             </div>
           </Link>
@@ -37,14 +37,14 @@ function Navbar() {
           {width < 800 ? (
             isMenuOpened ? (
               <AiOutlineClose
-                className="navbar__right-side__icon"
-                onClick={closeMenu}
-              />
+              className="navbar__right-side__icon"
+              onClick={closeMenu}
+            ></AiOutlineClose>
             ) : (
               <RxHamburgerMenu
-                className="navbar__right-side__icon"
-                onClick={openMenu}
-              />
+              className="navbar__right-side__icon"
+              onClick={openMenu}
+            ></RxHamburgerMenu>
             )
           ) : (
             <DesktopMenu />

@@ -28,7 +28,7 @@ function Navbar() {
           <Link to="/">
             <div className="navbar__left-side__logo">
               <span className="navbar__left-side__logo__text">
-                DEVRABIC <b>ECOM</b> STORE
+                Fadi <b>ECOM</b> STORE
               </span>
             </div>
           </Link>

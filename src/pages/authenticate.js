@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { MainContext } from "utils/context";
 
 function Authenticate() {
-  const [registerMode, setRegisterMode] = useState(false);
+  const [registerFormToggled, setRegisterFormToggled] = useState(false);
   const { user, loading } = useContext(MainContext);
   const navigate = useNavigate();
 
@@ -13,14 +13,14 @@ function Authenticate() {
     !loading && user && navigate("/");
   }, [loading, user]);
 
-  return registerMode ? (
+  return registerFormToggled ? (
     <div className="authenticate">
       <RegisterForm />
       <p>
-        Already have an account?{" "}
+        Already have an account?{' '}
         <b
-          onClick={() => setRegisterMode(false)}
           className="authenticate__anchor"
+          onClick={() => setRegisterFormToggled(false)}
         >
           Login
         </b>

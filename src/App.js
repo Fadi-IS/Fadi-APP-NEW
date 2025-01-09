@@ -10,15 +10,19 @@ import { MainContext } from "utils/context";
 import { useEffect, useState } from "react";
 import { fetchUserData, setupDBListener } from "utils/firebaseFunctions";
 import { products } from "utils/products";
+
 function App() {
   const [user, loading] = useAuthState(auth);
   const [cartProducts, setCartProducts] = useState();
   const [username, setUsername] = useState();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  useEffect(() => {
-    user && fetchUser();
-  }, [user]);
-
+  const fetchData = async () => {
+    const res = await fetchUserData(user);
+    if (res.success) {
+      setUsername(res.data.username);
+      setCartProducts(res.data.cartProducts);
+    }
+  };
   useEffect(() => {
     if (!loading && user) {
       setupDBListener(user, (data) => {
@@ -30,14 +34,9 @@ function App() {
       });
     }
   }, [loading, user]);
-  const fetchUser = async () => {
-    const res = await fetchUserData(user);
-    if (res.success) {
-      console.log(res);
-      setUsername(res.data.username);
-      setCartProducts(res.data.cartProducts);
-    }
-  };
+  useEffect(() => {
+    user && fetchData();
+  }, [user]);
 
   return (
     <>

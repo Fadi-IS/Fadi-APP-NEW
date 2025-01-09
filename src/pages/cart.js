@@ -1,7 +1,8 @@
 import CartCard from "components/cart-card/cart-card";
-import { products } from "utils/products";
+
 import { useContext } from "react";
 import { MainContext } from "utils/context";
+
 function Cart() {
   const { user, loading, username, cartProducts } = useContext(MainContext);
 

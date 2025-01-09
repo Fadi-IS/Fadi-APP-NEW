@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { MainContext } from "utils/context";
 import { TailSpin } from "react-loader-spinner";
 import { signOutUser } from "utils/firebaseFunctions";
-function DesktopMenu() {
+const DesktopMenu = () => {
   const { user, loading, cartProducts } = useContext(MainContext);
   const loc = useLocation();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function DesktopMenu() {
                 "navbar__right-side__item--selected"
               }`}
       >
-        Store
+        <p>Store</p>
       </Link>
       <div className="navbar__right-side__item">
         <Link
@@ -33,7 +33,7 @@ function DesktopMenu() {
                 "navbar__right-side__item--selected"
               }`}
         >
-          Cart
+          <p>Cart</p>
         </Link>
         {user && cartProducts && (
           <div className="navbar__right-side__cart-count">
@@ -41,6 +41,7 @@ function DesktopMenu() {
           </div>
         )}
       </div>
+      <div className="navbar__right-side__btn">
       {loading ? (
         <TailSpin
           height="30"
@@ -53,18 +54,19 @@ function DesktopMenu() {
           visible={true}
         />
       ) : user ? (
-        <button onClick={signOut} className="navbar__right-side__btn primary">
+        <button onClick={signOut} className="primary">
           Sign Out
         </button>
       ) : (
         <button
           onClick={() => navigate("/authenticate")}
-          className="navbar__right-side__btn primary"
+          className="primary"
         >
           Login
         </button>
       )}
+      </div>
     </>
   );
-}
+};
 export default DesktopMenu;
