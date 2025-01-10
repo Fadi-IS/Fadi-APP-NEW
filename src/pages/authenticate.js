@@ -11,7 +11,7 @@ function Authenticate() {
 
   useEffect(() => {
     !loading && user && navigate("/");
-  }, [loading, user]);
+  }, [loading, user, navigate]);
 
   return registerFormToggled ? (
     <div className="authenticate">
@@ -32,7 +32,7 @@ function Authenticate() {
       <p>
         Don't have an account?{" "}
         <b
-          onClick={() => setRegisterMode(true)}
+          onClick={() => setRegisterFormToggled(true)}
           className="authenticate__anchor"
         >
           Register

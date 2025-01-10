@@ -107,7 +107,7 @@ export const updateArrayData = async (product) => {
   }
 };
 
-export const removeArrayData = async (product) => {
+export const deleteArrayData  = async (product) => {
   const user = auth.currentUser;
 
   const docRef = doc(database, "users", user.uid);

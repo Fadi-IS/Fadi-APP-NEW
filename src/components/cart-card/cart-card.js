@@ -5,6 +5,10 @@ function CartCard({ product }) {
   const removeProduct = async () => {
     await deleteArrayData(product);
   };
+
+  const handleDelete = () => {
+    removeProduct();
+  };
   return (
     <div className="cart-card">
       <img src={imageURL} alt={name} className="cart-card__image"></img>
