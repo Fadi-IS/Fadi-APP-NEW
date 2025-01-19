@@ -1,16 +1,26 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { isStoreSelected, isCartSelected } from "utils/checkRoutes";
-import { useContext } from "react";
+import { isStoreSelected, isCartSelected ,isAddProductsSelected } from "utils/checkRoutes";
+import { useContext, useEffect } from "react";
 import { MainContext } from "utils/context";
 import { TailSpin } from "react-loader-spinner";
 import { signOutUser } from "utils/firebaseFunctions";
 const DesktopMenu = () => {
-  const { user, loading, cartProducts } = useContext(MainContext);
+  const { user, loading, cartProducts, isAdmin } = useContext(MainContext);
   const loc = useLocation();
   const navigate = useNavigate();
+  
+// Log isAdmin when it changes
+useEffect(() => {
+  console.log('isAdmin has changed:', isAdmin);
+}, [isAdmin]); // Dependency array ensures it logs only when isAdmin changes
+
   const signOut = async () => {
-    await signOutUser();
+    const res = await signOutUser();
+    if (res.success) {
+      window.location.reload();
+    }
   };
+
 
   return (
     <>
@@ -41,6 +51,20 @@ const DesktopMenu = () => {
           </div>
         )}
       </div>
+      
+      {user && isAdmin && (
+        <Link
+          to="/add-products"
+          className={` navbar__right-side__item ${
+            isAddProductsSelected(loc.pathname)
+              ? 'navbar__right-side__item--selected'
+              : ''
+          }`}
+        >
+          <p>Add Products</p>
+        </Link>
+      )}
+
       <div className="navbar__right-side__btn">
       {loading ? (
         <TailSpin

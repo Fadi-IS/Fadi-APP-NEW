@@ -133,3 +133,18 @@ export const setupDBListener = (user, callback) => {
     }
   });
 };
+
+export const fetchProducts = async () => {
+  try {
+    const productsRef = collection(database, 'products');
+    const querySnapshot = await getDocs(productsRef);
+
+    const data = querySnapshot.docs.map((doc) => doc.data());
+
+    return { success: true, data: data };
+  } catch (error) {
+    return { success: false, error: error.message };
+  }
+};
+
+
