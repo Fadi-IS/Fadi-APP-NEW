@@ -12,6 +12,7 @@ $color-red: red;
 @import "./styles/authenticate.scss";
 @import "./components/cart-card/cart-card.scss";
 @import "./components/register-form/register-form.scss";
+
 * {
   padding: 0;
   margin: 0;
@@ -32,8 +33,13 @@ a {
   color: $color-black;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  text-decoration: none;
+  color: $color-black;
 }
 button {
   letter-spacing: 1px;
